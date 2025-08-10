@@ -1,24 +1,22 @@
-# eeg-mental-health-prediction
+# EEG-Based Mental Health Prediction (Demo)
 
-Create folder **`src/`** with three minimal files:
+This repository demonstrates the workflow from my MSc dissertation:  
+**“Use of Machine Learning to Predict Mental Health Disorders using EEG Dataset”** (University of Wolverhampton, 2024).
 
-**src/data_preprocessing.py**
-```python
-"""
-Preprocess EEG: load csv, clean, feature engineer.
-Uses ONLY synthetic/public data.
-"""
-import pandas as pd
+> ⚠️ **Privacy note:** No real data is included here. The example uses **synthetic** EEG-like features to illustrate the pipeline end-to-end.
 
-def load_data(path="data/example_eeg.csv"):
-    return pd.read_csv(path)
+## Project goal
+Build a machine learning pipeline to classify major psychiatric disorder categories from EEG-derived features. In the dissertation, models included Logistic Regression, SVM, Random Forest, and a Soft Voting Ensemble with hyperparameter tuning and 5-fold cross-validation.
 
-def basic_features(df):
-    # placeholder: mean/std per channel
-    feat = df.copy()
-    return feat
+## What’s in this repo
+- `src/generate_synthetic_data.py` — creates a small synthetic dataset with:
+  - demographic columns (`sex`, `age`, `education`, `IQ`)
+  - 60 EEG-like numeric features (`EEG_0 … EEG_59`)
+  - a target label `main_disorder` with 7 classes (e.g., mood, anxiety, schizophrenia, etc.)
+- `src/model_training.py` — trains Logistic Regression, SVM, and Random Forest using GridSearchCV, evaluates on a hold-out test set, and prints Accuracy/Precision/Recall/F1.
 
-if __name__ == "__main__":
-    df = load_data()
-    X = basic_features(df)
-    X.to_csv("data/processed.csv", index=False)
+## Quick start
+
+### 1) Install dependencies
+```bash
+pip install -r requirements.txt
