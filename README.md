@@ -20,3 +20,4 @@ Build a machine learning pipeline to classify major psychiatric disorder categor
 ### 1) Install dependencies
 ```bash
 pip install -r requirements.txt
+python src/model_training.py
